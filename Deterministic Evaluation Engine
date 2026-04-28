@@ -1,0 +1,47 @@
+File: lib/evaluator.ts
+############################################ Code ##########################################################
+
+type Input = {
+  destination: string;
+  targetRole: string;
+  salary: number;
+  timelineMonths: number;
+};
+
+export function evaluatePlan(input: Input, market: any) {
+  const warnings: string[] = [];
+
+  if (!market) {
+    return {
+      feasibility: "Unavailable",
+      warnings: ["No structured market data available for requested destination-role combination"],
+      confidence: "missing"
+    };
+  }
+
+  const salaryMin = market.salary.min;
+  const totalMonths = market.timeline.total_estimated_months;
+
+  if (input.salary < salaryMin) {
+    warnings.push(
+      `Salary shortfall: minimum threshold is ${salaryMin} ${market.salary.currency}`
+    );
+  }
+
+  if (input.timelineMonths < totalMonths) {
+    warnings.push(
+      `Timeline conflict: requested ${input.timelineMonths} months but estimated minimum is ${totalMonths} months`
+    );
+  }
+
+  let feasibility = "High";
+
+  if (warnings.length === 1) feasibility = "Medium";
+  if (warnings.length >= 2) feasibility = "Low";
+
+  return {
+    feasibility,
+    warnings,
+    confidence: market.data_confidence
+  };
+}
