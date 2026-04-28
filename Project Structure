@@ -1,0 +1,16 @@
+/app/page.tsx
+/app/login/page.tsx
+/app/register/page.tsx
+/app/dashboard/page.tsx
+/app/new-plan/page.tsx
+/app/api/auth/login/route.ts
+/app/api/auth/register/route.ts
+/app/api/plans/generate/route.ts
+/lib/auth.ts
+/lib/evaluator.ts
+/lib/gemini.ts
+/data/market-data.ts
+/prisma/schema.prisma
+README.md
+DECISIONS.md
+Dockerfile
