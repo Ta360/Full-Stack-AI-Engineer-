@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  plans     Plan[]
+  createdAt DateTime @default(now())
+}
+
+model Plan {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id])
+
+  origin         String
+  destination    String
+  targetRole     String
+  salary         Float
+  currency       String
+  timelineMonths Int
+  sponsorship    Boolean
+
+  feasibility    String
+  warning        String?
+  generatedPlan  Json
+
+  createdAt      DateTime @default(now())
+}
+
+
+Install Commands
+####################
+
+npm install prisma @prisma/client
+npx prisma generate
+npx prisma migrate dev --name 
+nit
+
