@@ -1,0 +1,7 @@
+Included Pages:
+
+app/page.tsx → Landing page
+app/login/page.tsx
+app/register/page.tsx
+app/dashboard/page.tsx
+app/new-plan/page.tsx
