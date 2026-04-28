@@ -1,0 +1,48 @@
+File: app/api/plans/generate/route.ts
+################################### Code #######################################################
+
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
+import { verifyToken } from "@/lib/auth";
+import { marketData } from "@/data/market-data";
+import { evaluatePlan } from "@/lib/evaluator";
+import { generateRoadmap } from "@/lib/gemini";
+
+const prisma = new PrismaClient();
+
+export async function POST(req: Request) {
+  try {
+    const auth = req.headers.get("authorization");
+    if (!auth) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const token = auth.replace("Bearer ", "");
+    const decoded = verifyToken(token);
+
+    const body = await req.json();
+
+    const {
+      origin,
+      destination,
+      targetRole,
+      salary,
+      timelineMonths,
+      sponsorship
+    } = body;
+
+    const market = marketData?.[destination]?.[targetRole];
+
+    const evaluation = evaluatePlan(
+      {
+        destination,
+        targetRole,
+        salary,
+        timelineMonths
+      },
+      market
+    );
+
+    if (!market) {
+      return NextResponse.js
+
