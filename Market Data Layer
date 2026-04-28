@@ -1,0 +1,73 @@
+File: data/market-data.ts
+####################################### Code ###################################################
+
+export const marketData = {
+  Germany: {
+    "Senior Backend Engineer": {
+      salary: {
+        min: 45000,
+        median: 60000,
+        max: 85000,
+        currency: "EUR"
+      },
+      visaRoutes: [
+        {
+          name: "EU Blue Card",
+          type: "employment",
+          sponsorship_required: true,
+          processing_time_months: 4,
+          eligibility_criteria: [
+            "Recognized degree",
+            "Job offer",
+            "Minimum salary threshold"
+          ]
+        }
+      ],
+      credentials: {
+        qualifications: ["Backend engineering experience", "Strong system design"],
+        language: "German B1 preferred",
+        degree_equivalency: "Helpful but not mandatory"
+      },
+      timeline: {
+        hiring_duration_months: 3,
+        total_estimated_months: 7
+      },
+      marketDemand: "High",
+      data_confidence: "verified"
+    }
+  },
+
+  "United Kingdom": {
+    "Product Manager": {
+      salary: {
+        min: 60000,
+        median: 75000,
+        max: 100000,
+        currency: "GBP"
+      },
+      visaRoutes: [
+        {
+          name: "Skilled Worker Visa",
+          type: "employment",
+          sponsorship_required: false,
+          processing_time_months: 2,
+          eligibility_criteria: [
+            "Offer from licensed sponsor"
+          ]
+        }
+      ],
+      credentials: {
+        qualifications: ["Product ownership", "Stakeholder management"],
+        language: "English",
+        degree_equivalency: "Business/Tech preferred"
+      },
+      timeline: {
+        hiring_duration_months: 2,
+        total_estimated_months: 4
+      },
+      marketDemand: "High",
+      data_confidence: "estimated"
+    }
+  }
+};
+
